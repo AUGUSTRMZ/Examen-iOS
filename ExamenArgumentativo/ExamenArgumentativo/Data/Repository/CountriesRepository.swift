@@ -6,3 +6,11 @@
 //
 
 import Foundation
+
+struct CountriesAPI {
+    static let base = "https://restcountries.com/v3.1"
+    struct routes {
+        static let all = "/all?fields=name"
+        static let name = "/name/"
+    }
+}
