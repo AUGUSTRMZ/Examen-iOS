@@ -10,10 +10,10 @@ import Foundation
 /*
  del mismo modo creo que es relevante mostrar la informacion de cada pais
  para asegurarnos de que sean datos que en teoria estan dispoibles en todos los paises
- vamos a usar el nombre, currencies, region y subregion  en la que se encuentran
+ vamos a usar el nombre, currencies, region y subregion, borders y languagues  en la que se encuentran
  */
 
-struct ContryDetail: Codable, Identifiable {
+struct CountryDetail: Codable, Identifiable {
     var id: String { name.common }
     
     let name: CountryName

@@ -7,8 +7,11 @@
 
 import Foundation
 
-/*creacion del modelo para el api de countries
+/*
+ 
+ creacion del modelo para el api de countries
  como decision practica usare este para buscar los paises en una barra de busqueda entonces solo voy a extraer el nombre "common" del pais de este
+ 
  */
 
 struct Country: Codable, Identifiable {
@@ -20,6 +23,5 @@ struct Country: Codable, Identifiable {
         let official: String // nombre oficial ej republica argentina
     }
 }
-
 
 
