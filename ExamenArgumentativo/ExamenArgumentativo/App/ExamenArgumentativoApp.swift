@@ -11,7 +11,7 @@ import SwiftUI
 struct ExamenArgumentativoApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            CountriesListView()
         }
     }
 }

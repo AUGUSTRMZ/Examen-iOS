@@ -13,12 +13,13 @@ struct CountriesListView: View {
     
     var body: some View {
         NavigationView {
+            // lista de las misiones
             List(vm.countries, id: \.name.common) { country in
                 NavigationLink(destination: CountryDetailView(countryName: country.name.common)) {
                     VStack(alignment: .leading, spacing: 4) {
-                        Text(country.name.common)
+                        Text(country.name.common) // nombre comun del pais
                             .font(.headline)
-                        Text(country.name.official)
+                        Text(country.name.official) // nombre oficial del pais en un texto como tipo secondary
                             .font(.subheadline)
                             .foregroundColor(.gray)
                     }
@@ -26,7 +27,7 @@ struct CountriesListView: View {
             }
             .navigationTitle("Países")
             .task {
-                // Llamamos la función del ViewModel
+                // Funcion get
                 await vm.getCountries()
             }
         }

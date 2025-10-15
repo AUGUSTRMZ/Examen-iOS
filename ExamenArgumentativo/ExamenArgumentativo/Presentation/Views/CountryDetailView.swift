@@ -16,42 +16,50 @@ struct CountryDetailView: View {
         ScrollView {
             if let detail = vm.countryDetail {
                 VStack(alignment: .leading, spacing: 10) {
-                    Text(detail.name.common)
+                    Text(detail.name.common) // nombre del pais
                         .font(.largeTitle)
                         .bold()
+                        .padding()
                     
                     Divider()
-                    
-                    Group {
-                        Text(" Región: \(detail.region)")
-                        Text(" Subregión: \(detail.subregion ?? "Desconocida")")
-                    }
-                    .font(.body)
-                    
-                    if let currencies = detail.currencies {
-                        ForEach(currencies.keys.sorted(), id: \.self) { key in
-                            if let currency = currencies[key] {
-                                Text("Moneda: \(currency.name) (\(currency.symbol ?? ""))")
+                     // tarjeeta simple donde meter los datos
+                    VStack(alignment: .leading, spacing: 10) {
+                        Text(" Región: \(detail.region ?? "Desconocida")") // region
+                        Text(" Subregión: \(detail.subregion ?? "Desconocida")") // subregion
+                        
+                        if let currencies = detail.currencies {
+                            ForEach(currencies.keys.sorted(), id: \.self) { key in
+                                if let currency = currencies[key] {
+                                    Text("Moneda: \(currency.name ?? "Desconocido") (\(currency.symbol ?? "No encontrado"))")
+                                }
                             }
                         }
+                        
+                        if let borders = detail.borders {
+                            Text("Fronteras: \(borders.joined(separator: ", "))") // fronteras
+                        }
+                        
+                        if let languages = detail.languagues {
+                            Text("Idiomas: \(languages.values.joined(separator: ", "))") // idiomas
+                        }
+                    }
+                    .padding()
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .background(Color.white)
+                    .cornerRadius(15)
+                    .shadow(color: .gray.opacity(0.5), radius: 5)
+                    .font(.body)
+                    
                     }
                     
-                    if let borders = detail.borders {
-                        Text("Fronteras: \(borders.joined(separator: ", "))")
-                    }
-                    
-                    if let languages = detail.languagues {
-                        Text("Idiomas: \(languages.values.joined(separator: ", "))")
-                    }
-                }
-                .padding()
+
             } else {
-                ProgressView("Cargando detalles...")
+                ProgressView("Cargando detalles...") // pantalla de carga
             }
         }
-        .navigationTitle(countryName)
+        
         .task {
-            await vm.getCountryDetail(name: countryName)
+            await vm.getCountryDetail(name: countryName) // uso de la funcion get
         }
     }
 }
